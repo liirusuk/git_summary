@@ -90,7 +90,7 @@ def fetch_and_summarize(github_url):
     try:
         raw_base, file_paths = fetch_repo_file_tree(github_url)
         files = get_main_file_list(file_paths)
-        files_content = read_files_content([f'{raw_base}/{f}' for f in files if '`' not in f])
+        files_content = read_files_content([f'{raw_base}/{f}' for f in files[:100] if '`' not in f])
         summary = get_summary(file_paths, files_content)
     except json.JSONDecodeError:
         return "Failed to parse repository contents as JSON"
