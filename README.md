@@ -89,7 +89,7 @@ The response will be a JSON object with three fields:
 4. **Summarization** –
  - The file‑tree and the fetched file contents are fed to a second LLM prompt (JSON‑summary).
  - The model produces a structured JSON summary (project purpose, technologies, layout).
-5. *What’s Skipped & Why*
+5. **What’s Skipped & Why**
  - Non‑code assets (images, binaries, large data files) – they rarely help a textual summary and would waste bandwidth.
  - Files containing back‑ticks (`) in their path – the implementation explicitly filters these out, assuming they are markup‑related or temporary artifacts.
  - Huge files – the LLM prompt size limit forces us to ignore files whose content would push the request beyond the token budget.
