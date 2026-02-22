@@ -1,0 +1,15 @@
+# Test your FastAPI endpoints
+
+POST http://127.0.0.1:8000/summarize
+Content-Type: application/json
+
+{
+  "github_url": "https://github.com/psf/requests"
+}
+
+###
+
+GET http://127.0.0.1:8000/hello
+Accept: application/json
+
+###
