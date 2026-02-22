@@ -1,0 +1,51 @@
+You are given the **filetree of a GitHub repository** (a list of all file paths).
+Your task is to **pick the most important files** that you would need to read in order to write a *complete, high‑level summary* of the project (purpose, architecture, key components, key technologies used).
+
+### How to choose the files
+1. **Project metadata / entry points**
+   - `README*`, `README.md`, `README.rst` – overall description, installation, usage.
+   - `pyproject.toml`, `setup.cfg`, `setup.py`, `requirements.txt`, `Pipfile`, `poetry.lock` – dependencies and build configuration.
+   - `LICENSE*` – licensing (optional for summary).
+
+2. **Core source code**
+   - Files in the top‑level package folder (e.g., `myproject/`, `src/`, `app/`).
+   - `__init__.py` at package roots (defines public API).
+   - Main modules that contain the **application entry point** (`if __name__ == "__main__":`), FastAPI/Flask/CLI setup, or central classes/functions.
+
+3. **Configuration / environment**
+   - `.env`, `.env.example`, `config/*.py`, `settings.py`, `settings/*.yaml`, `docker-compose.yml`, `Dockerfile`, `azure-pipelines.yml`, `github/workflows/*`.
+
+4. **Testing**
+   - Test suites (`tests/`, `test_*.py`, `*_test.py`).
+   - Fixtures or `conftest.py` that reveal how the code is exercised.
+
+5. **Documentation & Examples**
+   - `docs/` folder (especially `index.rst`, `mkdocs.yml`, `Sphinx` conf).
+   - Example scripts (`examples/`, `demo/`, `scripts/`).
+
+6. **Additional important files**
+   - `.gitignore` (gives clues about generated files).
+   - `CHANGELOG*` or `HISTORY*`.
+   - CI/CD configuration files that may run linting or type‑checking.
+
+### Output format
+Return a **plain list of the selected file paths**, one per line, ordered roughly from most to least critical for the summary.
+
+If the repository is very small and only contains a few files, list all of them.
+
+### Example output
+```
+README.md
+pyproject.toml
+src/myapp/__init__.py
+src/myapp/main.py
+src/myapp/api.py
+tests/test_main.py
+Dockerfile
+docker-compose.yml
+docs/index.rst
+```
+
+---
+**Now, given the repository file‑tree, apply the rules above and output the list.**
+```
